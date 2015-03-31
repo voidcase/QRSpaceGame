@@ -1,0 +1,168 @@
+<html>
+	<head>
+		<title>battle!</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="ship">
+			<div id="nameviewer">---</div>
+			<div id="laserviewer">---</div>
+			<div id="shieldsviewer">---</div>
+			<div id="missileviewer">---</div>
+			<div id="creditviewer">---</div>
+			<div id=input>
+				<br />
+				<button onclick=fireLaser()>FIRE LASERS</button>
+				<br />
+				<br />
+				<button onclick=fireMissile()>FIRE MISSILE</button>
+				<br />
+				<br />
+				<button onclick=raiseShields()>RAISE SHIELDS</button>
+				<br />
+				<br />
+				<button onclick=retreat()>RETREAT</button>
+			</div>
+		</div>
+		<div class="outputWindow">
+			<p id="output"></p>
+		</div>
+		<script>
+			function output(text){
+				var child = document.createTextNode(text);
+				var br = document.createElement("br");
+				document.getElementById("output").appendChild(child);
+				document.getElementById("output").appendChild(br);
+			}
+			function getCookie(key) {
+				var value = "; " + document.cookie;
+				var parts = value.split("; " + key + "=");
+				if (parts.length == 2) return parts.pop().split(";").shift();
+			}
+
+			var name, shields, laser, missiles, credits;
+			name = getCookie("name");
+			shields = +getCookie("shields");
+			laser = +getCookie("laser");
+			missiles = +getCookie("missiles");
+			credits = +getCookie("credits");
+			var maxShields = shields;
+			function updateShip(){
+				document.getElementById("nameviewer").innerHTML = "<b>" + name + "</b>";
+				document.getElementById("laserviewer").innerHTML = "laser: " + laser;
+				document.getElementById("shieldsviewer").innerHTML = "shields: " + shields + "/" + maxShields;
+				document.getElementById("missileviewer").innerHTML = "missiles: " + missiles;
+				document.getElementById("creditviewer").innerHTML = "credits: " + credits;
+			}
+
+			if(shields == 0){
+				window.location.replace("death.html");
+			}
+
+			updateShip();
+
+			function foe(n,l,s,m,c,h){
+				this.n = n;
+				this.s = s;
+				this.l = l;
+				this.m = m;
+				this.c = c;
+				this.h = h;
+			}
+
+			var enemies = [
+				new foe("lost cosmonauts",7,8,1,100,"SURRENDER TO CCCP YOU CAPITALIST SWINES!"),
+				new foe("space pirates",11,8,0,200,"YARR!! All ye credits shall be ours!"),
+				new foe("space sharks",7,9,0,0,"duuun-dun...duuuun-dun....dun-dun-dun-dun-dun-dun..."),
+				new foe("terrible anti-kessler drone",11,13,1,500,"On orders of the mid-orbital council, All orbiting debris must be terminated. If you are not a piece of debris, please file a declaration of necessity in a sealed envelope to your local space transportation office within the next two seconds. The mid-orbital council thanks you for your time and cooperation."),
+				new foe("Imperial scoutship",7,15,2,800,"The empire shall rule the universe. Glory to The Emperor!")
+			
+			];
+			var enemy = enemies[Math.floor(Math.random()*(enemies.length))];
+			output("You are ambushed by " + enemy.n + "!");
+			output("A message is recieved on the intercom: " + enemy.h);
+			output("COMBAT MODE : ENGAGED");
+			
+
+			function checkVictory(){
+				if(enemy.s<=0){
+					output("The " + enemy.n + " got blown to pieces. You stand victorious in battle.");
+					output("Looting the debris of the enemy, " + enemy.c + " credits were recovered.");
+					shields = maxShields;
+					output("shields regenerated to capacity.");
+					output("COMBAT MODE : DISENGAGED");
+					credits += +enemy.c;
+					updateShip();
+
+					document.getElementById("input").style.visibility = "hidden";
+
+					document.cookie = 'missiles=' + missiles + "; path=/";
+					document.cookie = 'credits=' + credits + "; path=/";
+				}
+				else{
+					retaliation();
+				}
+			}
+			
+			function fireLaser(){
+				if(shields<=0)return;
+				var damage = Math.floor(laser*Math.random());
+				enemy.s -= damage;
+				if(damage == 0){
+					output("your laser missed!");
+				}
+				else{
+					output("you dealt " + damage + " laser damage to the " + enemy.n);
+				}
+				checkVictory();
+			}
+
+			function fireMissile(){
+				if(missiles >= 1){
+					missiles -= 1;
+					enemy.s -= 5;
+					output("Your missile did 5 damage to the " + enemy.n);
+				}
+				else{
+					output("You are out of missiles.");
+				}
+				checkVictory();
+			}
+
+			function raiseShields(){
+				var diff = Math.floor(Math.random()*(maxShields-shields));
+				shields += diff;
+				output("shields regenerated " + diff + " points.");
+				retaliation();
+			}
+			function retreat(){
+				if(confirm("Captain, starting the warp engines now will make the damage to your shields pernament. Are you sure you want to retreat?")){
+					document.cookie = "shields=" + shields + ";path=/";
+					maxShields=shields;
+					updateShip();
+					output("You retreat from the battle.");
+					document.getElementById("input").style.visibility = "hidden";
+				}
+			}
+			function retaliation(){
+				var damage = Math.floor(enemy.l*Math.random());
+				shields -= damage;
+				if(damage == 0){
+					output("enemy laser missed!");
+				}
+				else{
+					output(enemy.n + " dealt " + damage + " damage to your ship.");
+				}
+
+				updateShip();
+				if(shields<=0){
+					output("Your ship has been wrecked. Game over.");
+					document.getElementById("input").style.visibility = "hidden";
+					document.cookie = "shields=0;path=/";
+					document.cookie = "credits=0;path=/";
+				}
+			}
+
+		</script>
+	</body>
+</html>

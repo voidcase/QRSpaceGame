@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>Outpost</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="ship">
+			<div id="nameviewer">placeholder</div>
+			<div id="laserviewer">dfsafsa</div>
+			<div id="shieldsviewer">hhhhh</div>
+			<div id="missileviewer">vvvvvvvvvvv</div>
+			<div id="creditviewer">fdsafgs</div>
+		</div>
+		<p id="output"></p>
+		<script>
+			function output(text){
+				var child = document.createTextNode(text);
+				var br = document.createElement("br");
+				document.getElementById("output").appendChild(child);
+				document.getElementById("output").appendChild(br);
+			}
+			function getCookie(key) {
+				var value = "; " + document.cookie;
+				var parts = value.split("; " + key + "=");
+				if (parts.length == 2) return parts.pop().split(";").shift();
+			}
+
+			var name, shields, laser, missiles, credits;
+			name = getCookie("name");
+			shields = +getCookie("shields");
+			laser = +getCookie("laser");
+			missiles = +getCookie("missiles");
+			credits = +getCookie("credits");
+
+			function updateShip(){
+				document.getElementById("nameviewer").innerHTML = "<b>" + name + "</b>";
+				document.getElementById("laserviewer").innerHTML = "laser:&nbsp;" + laser;
+				document.getElementById("shieldsviewer").innerHTML = "shields:&nbsp;" + shields;
+				document.getElementById("missileviewer").innerHTML = "missiles:&nbsp;" + missiles;
+				document.getElementById("creditviewer").innerHTML = "credits:&nbsp;" + credits;
+			}
+			updateShip();
+			var plot = Math.floor(Math.random()*3);
+			switch(plot){
+				case 0:
+					output("You dock at an outpost.");
+					output("It's appears to be abandoned, Most of the equipment is gone or broken but you manage to find some unused missiles to add to your arsenal.");
+					missiles += 2;
+				break;
+				case 1:
+					output("You intersect an unexpected meteorshower. Your laser cannons are damaged.");
+					laser -= 2;
+				break;
+				case 2:
+					output("You land at a small moon depot to refuel and restock. The old man who lives there tells you about how his son tried to escape through the wormhole but the convoy he was on was destroyed by the empire for trespassing on their territory. All the empires most powerful ships patrol within their territory. for now.");
+					output("You take off and continue on your journey.");
+				break;
+			}
+			updateShip();
+			document.cookie= "laser=" + laser + ";path=/";
+			document.cookie= "missiles=" + missiles + ";path=/";
+		</script>			
+	
+	</body>
+</html>

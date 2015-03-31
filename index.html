@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>start</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<script src="cookieIO.js"></script>
+		<div class="ship">
+		<div id="nameviewer">placeholder</div>
+		<div id="laserviewer">dfsafsa</div>
+		<div id="shieldsviewer">hhhhh</div>
+		<div id="missileviewer">vvvvvvvvvvv</div>
+		<div id="creditviewer">fdsafgs</div>
+		</div>
+		<script>
+			var name, shields, laser, missiles, credits;
+			
+			name = prompt("What will you name your ship?").replace("/ /g","_");
+			shields = 10 + Math.round(Math.random()*5);
+			laser = 10 + Math.round(Math.random()*5);
+			missiles = 1 + Math.round(Math.random()*2);
+			credits = 500 + 10*Math.round(Math.random()*10);
+			
+			document.getElementById("nameviewer").innerHTML = "<b>" + name + "</b>";
+			document.getElementById("laserviewer").innerHTML = "laser:\t" + laser;
+			document.getElementById("shieldsviewer").innerHTML = "shields:\t" + shields;
+			document.getElementById("missileviewer").innerHTML = "missiles:\t" + missiles;
+			document.getElementById("creditviewer").innerHTML = "credits:\t" + credits;
+			
+			/*In case i need expiration date
+			var date = new Date();
+			date.setTime(date.getTime() + (24 * 60 * 60 * 1000));*/
+			document.cookie = 'name=' + name + "; path=/";
+			document.cookie = 'shields=' + shields + "; path=/";
+			document.cookie = 'laser=' + laser + "; path=/";
+			document.cookie = 'missiles=' + missiles + "; path=/";
+			document.cookie = 'credits=' + credits + "; path=/";
+		</script>
+		And now the journey begins.
+
+	</body>
+</html>

@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<title>station</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+
+	<body>
+		<div class="ship">
+		<div id="nameviewer">placeholder</div>
+		<div id="laserviewer">dfsafsa</div>
+		<div id="shieldsviewer">hhhhh</div>
+		<div id="missileviewer">vvvvvvvvvvv</div>
+		<div id="creditviewer">fdsafgs</div>
+			<div id="input">
+				<button onclick="laserUp()">Upgrade laser (300c)</button>
+				<button	onclick="shieldsUp()">Upgrade shields (200c)</button>
+				<button onclick="missilesUp()">Buy missile (250c)</button>
+			</div>
+		</div>
+		<p id="output"></p>
+		<script>
+			function output(text){
+				var child = document.createTextNode(text);
+				var br = document.createElement("br");
+				document.getElementById("output").appendChild(child);
+				document.getElementById("output").appendChild(br);
+			}
+			function getCookie(key) {
+				var value = "; " + document.cookie;
+				var parts = value.split("; " + key + "=");
+				if (parts.length == 2) return parts.pop().split(";").shift();
+			}
+
+			var name, shields, laser, missiles, credits;
+			name = getCookie("name");
+			shields = +getCookie("shields");
+			laser = +getCookie("laser");
+			missiles = +getCookie("missiles");
+			credits = +getCookie("credits");
+
+			function updateShip(){
+				document.getElementById("nameviewer").innerHTML = "<b>" + name + "</b>";
+				document.getElementById("laserviewer").innerHTML = "laser:&nbsp;" + laser;
+				document.getElementById("shieldsviewer").innerHTML = "shields:&nbsp;" + shields;
+				document.getElementById("missileviewer").innerHTML = "missiles:&nbsp;" + missiles;
+				document.getElementById("creditviewer").innerHTML = "credits:&nbsp;" + credits;
+			}
+			updateShip();
+			
+			output("You dock at a trading station. Here you can spend credits to repair or upgrade your ship.");
+			
+			function laserUp(){
+				var price = 300;
+				if(credits>=price){
+					credits -= price;
+					laser++;
+					output("Your laser cannon has been upgraded.");
+					updateShip();
+					document.cookie = "laser=" + laser + ";path=/";
+					document.cookie = "credits=" + credits + ";path=/"
+				}
+				else{
+					output("You can not afford to upgrade your laser.");
+				}
+			}
+			function shieldsUp(){
+				var price = 200;
+				if(credits>=price){
+					credits -= price;
+					shields++;
+					output("Your shields have been upgraded.");
+					updateShip();
+					document.cookie = "shields=" + shields + ";path=/";
+					document.cookie = "credits=" + credits + ";path=/"
+				}
+				else{
+					output("You can not afford to upgrade your shields.");
+				}
+			}
+			function missilesUp(){
+				var price = 250;
+				if(credits>=price){
+					credits -= price;
+					missiles++;
+					output("You have bought a missile.");
+					updateShip();
+					document.cookie = "missiles=" + missiles + ";path=/";
+					document.cookie = "credits=" + credits + ";path=/"
+				}
+				else{
+					output("You can not afford a missile.");
+				}
+			}
+
+
+		
+
+		</script>
+	</body>
+
+
+</html>

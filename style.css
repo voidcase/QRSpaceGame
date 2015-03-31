@@ -1,0 +1,20 @@
+body{
+	font-family:"consolas","courier new","monospace";
+	color:#a0a0ff;
+	background-color:#04061B;
+}
+.ship{
+	background-color:#050729;
+	float:left;
+	height:100%;
+	width:23%;
+	margin-right:2%;
+}
+.outputWindow {
+	float:right;
+	height:100%;
+	width:75%;
+}
+button{
+	width:100%;
+}
