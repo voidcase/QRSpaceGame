@@ -11,14 +11,10 @@
 			<div id="missileviewer">---</div>
 			<div id="creditviewer">---</div>
 			<div id=input>
-				<br />
 				<button onclick=fireLaser()>FIRE LASERS</button>
-				<br />
-				<br />
 				<button onclick=fireMissile()>FIRE MISSILE</button>
-				<br />
-				<br />
-				<button onclick=raiseShields()>RAISE SHIELDS</button>
+				<button onclick=raiseShields()>REGENERATE SHIELDS</button>
+				<button onclick=scan()>SCAN</button>
 			</div>
 		</div>
 		<div class="outputWindow">
@@ -68,9 +64,9 @@
 			}
 
 			var enemies = [
-				new foe("Imperial Battleship",15,20,3,800,"You are intruding on a system controlled by the Ceilius Empire. Prepare for termination. Glory to The Emperor!"),
-				new foe("Imperial Destroyer",20,15,4,700,"ALL OUTSIDERS MUST BE PURGED! GLORY TO THE EMPEROR!"),
-				new foe("Imperial Dreadnought",17,17,2,750,"None may rebel against the empire and live. Glory to the emperor!")
+				new foe("Victory Class Star Destroyer",20,15,3,1000,"You will know the power of the dark side"),
+				new foe("Imperial Class Star Destroyer",15,20,3,1000,"You are sentenced to immediate execution for crime against the empire."),
+				new foe("Dreadnaught Class Heavy Cruiser",15,15,4,600,"The resistance will be crushed!")
 			];
 			var enemy = enemies[Math.floor(Math.random()*(enemies.length))];
 			output("You are ambushed by " + enemy.n + "!");
@@ -85,6 +81,7 @@
 					shields = maxShields;
 					output("shields regenerated to capacity.");
 					output("COMBAT MODE : DISENGAGED");
+					output("You can now safely hyperdrive to the next location.");
 					credits += +enemy.c;
 					updateShip();
 
@@ -130,13 +127,22 @@
 				retaliation();
 			}
 			function retreat(){
-				if(confirm("Captain, starting the warp engines now will make the damage to your shields pernament. Are you sure you want to retreat?")){
+				if(confirm("Captain, starting the hyper drive now will make the damage to your shields pernament. Are you sure you want to retreat?")){
 					document.cookie = "shields=" + shields + ";path=/";
 					maxShields=shields;
 					updateShip();
 					output("You retreat from the battle.");
 					document.getElementById("input").style.visibility = "hidden";
 				}
+			}
+			function scan(){
+				output("---BEGIN SCAN REPORT---");
+				output("TARGET   : " + enemy.n);
+				output("LASERS   : " + enemy.l);
+				output("SHIELDS  : " + enemy.s);
+				output("MISSILES : " + enemy.m);
+				output("----END SCAN REPORT----")
+				retaliation();
 			}
 			function retaliation(){
 				var damage = Math.floor(enemy.l*Math.random());

@@ -48,17 +48,19 @@
 					missiles += 2;
 				break;
 				case 1:
-					output("You intersect an unexpected meteorshower. Your laser cannons are damaged.");
+					output("You intersect an unexpected meteor shower. Your laser cannons are damaged.");
 					laser -= 2;
 				break;
 				case 2:
-					output("You land at a small moon depot to refuel and restock. The old man who lives there tells you about how his son tried to escape through the wormhole but the convoy he was on was destroyed by the empire for trespassing on their territory. All the empires most powerful ships patrol within their territory. for now.");
-					output("You take off and continue on your journey.");
+					output("You land at a tavern where you get very drunk, the next day you wake up to find that you renamed your ship.");
+					name = ["RECLINERS_RECLINERS_RECLINERS","ship_shaped_cat","The_Dogemobile", "cheese","The_millenium_pidgeon", "jan_senap","windrammer","spaghetticonfetti","kaviartaxi"][Math.floor(Math.random()*9)];
 				break;
 			}
 			updateShip();
 			document.cookie= "laser=" + laser + ";path=/";
 			document.cookie= "missiles=" + missiles + ";path=/";
+			document.cookie= "name=" + name + ";path=/";
+			output("You can now hyperdrive to the next location.");
 		</script>			
 	
 	</body>
