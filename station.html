@@ -18,35 +18,8 @@
 			</div>
 		</div>
 		<p id="output"></p>
+		<script type="text/javascript" src="base.js"></script>
 		<script>
-			function output(text){
-				var child = document.createTextNode(text);
-				var br = document.createElement("br");
-				document.getElementById("output").appendChild(child);
-				document.getElementById("output").appendChild(br);
-			}
-			function getCookie(key) {
-				var value = "; " + document.cookie;
-				var parts = value.split("; " + key + "=");
-				if (parts.length == 2) return parts.pop().split(";").shift();
-			}
-
-			var name, shields, laser, missiles, credits;
-			name = getCookie("name");
-			shields = +getCookie("shields");
-			laser = +getCookie("laser");
-			missiles = +getCookie("missiles");
-			credits = +getCookie("credits");
-
-			function updateShip(){
-				document.getElementById("nameviewer").innerHTML = "<b>" + name + "</b>";
-				document.getElementById("laserviewer").innerHTML = "laser:&nbsp;" + laser;
-				document.getElementById("shieldsviewer").innerHTML = "shields:&nbsp;" + shields;
-				document.getElementById("missileviewer").innerHTML = "missiles:&nbsp;" + missiles;
-				document.getElementById("creditviewer").innerHTML = "credits:&nbsp;" + credits;
-			}
-			updateShip();
-			
 			output("You dock at a trading station. Here you can spend credits to repair or upgrade your ship if you want to.");
 			
 			function laserUp(){
@@ -56,8 +29,7 @@
 					laser++;
 					output("Your laser cannon has been upgraded.");
 					updateShip();
-					document.cookie = "laser=" + laser + ";path=/";
-					document.cookie = "credits=" + credits + ";path=/"
+					saveCookie();
 				}
 				else{
 					output("You can not afford to upgrade your laser.");
@@ -70,8 +42,7 @@
 					shields++;
 					output("Your shields have been upgraded.");
 					updateShip();
-					document.cookie = "shields=" + shields + ";path=/";
-					document.cookie = "credits=" + credits + ";path=/"
+					saveCookie();
 				}
 				else{
 					output("You can not afford to upgrade your shields.");
@@ -84,8 +55,7 @@
 					missiles++;
 					output("You have bought a missile.");
 					updateShip();
-					document.cookie = "missiles=" + missiles + ";path=/";
-					document.cookie = "credits=" + credits + ";path=/"
+					saveCookie();
 				}
 				else{
 					output("You can not afford a missile.");

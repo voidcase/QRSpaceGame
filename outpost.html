@@ -5,41 +5,15 @@
 	</head>
 	<body>
 		<div class="ship">
-			<div id="nameviewer">placeholder</div>
-			<div id="laserviewer">dfsafsa</div>
-			<div id="shieldsviewer">hhhhh</div>
-			<div id="missileviewer">vvvvvvvvvvv</div>
-			<div id="creditviewer">fdsafgs</div>
+			<div id="nameviewer">---</div>
+			<div id="laserviewer">---</div>
+			<div id="shieldsviewer">---</div>
+			<div id="missileviewer">---</div>
+			<div id="creditviewer">---</div>
 		</div>
 		<p id="output"></p>
+		<script src="base.js"></script>
 		<script>
-			function output(text){
-				var child = document.createTextNode(text);
-				var br = document.createElement("br");
-				document.getElementById("output").appendChild(child);
-				document.getElementById("output").appendChild(br);
-			}
-			function getCookie(key) {
-				var value = "; " + document.cookie;
-				var parts = value.split("; " + key + "=");
-				if (parts.length == 2) return parts.pop().split(";").shift();
-			}
-
-			var name, shields, laser, missiles, credits;
-			name = getCookie("name");
-			shields = +getCookie("shields");
-			laser = +getCookie("laser");
-			missiles = +getCookie("missiles");
-			credits = +getCookie("credits");
-
-			function updateShip(){
-				document.getElementById("nameviewer").innerHTML = "<b>" + name + "</b>";
-				document.getElementById("laserviewer").innerHTML = "laser:&nbsp;" + laser;
-				document.getElementById("shieldsviewer").innerHTML = "shields:&nbsp;" + shields;
-				document.getElementById("missileviewer").innerHTML = "missiles:&nbsp;" + missiles;
-				document.getElementById("creditviewer").innerHTML = "credits:&nbsp;" + credits;
-			}
-			updateShip();
 			var plot = Math.floor(Math.random()*3);
 			switch(plot){
 				case 0:
@@ -57,9 +31,7 @@
 				break;
 			}
 			updateShip();
-			document.cookie= "laser=" + laser + ";path=/";
-			document.cookie= "missiles=" + missiles + ";path=/";
-			document.cookie= "name=" + name + ";path=/";
+			saveCookie();
 			output("You can now hyperdrive to the next location.");
 		</script>			
 	
