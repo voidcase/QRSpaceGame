@@ -2,12 +2,12 @@ var maxShields = shields;
 var enemy;
 
 function foe(n,l,s,m,c,h){
-	this.n = n;
-	this.s = s;
-	this.l = l;
-	this.m = m;
-	this.c = c;
-	this.h = h;
+	this.n = n; //name
+	this.s = s; //shields
+	this.l = l; //lasers
+	this.m = m; //missiles
+	this.c = c; //credits
+	this.h = h; //greeting
 }
 
 function generateEnemy(enemies){
@@ -36,7 +36,7 @@ function checkVictory(){
 }
 
 function fireLaser(){
-	if(shields<=0)return;
+	if(shields<=0) return;
 	var damage = Math.floor(laser*Math.random());
 	enemy.s -= damage;
 	if(damage == 0){
