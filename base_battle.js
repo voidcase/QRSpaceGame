@@ -82,7 +82,7 @@ function scan(){
 	output("SHIELDS  : " + enemy.s);
 	output("MISSILES : " + enemy.m);
 	output("----END SCAN REPORT----")
-	retaliation();
+	//retaliation(); retaliation means nobody uses scan
 }
 function retaliation(){
 	var damage = Math.floor(enemy.l*Math.random());
