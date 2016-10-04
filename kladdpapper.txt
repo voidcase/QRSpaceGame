@@ -1,0 +1,22 @@
+possible upgrades
+
+inventory
+	trading
+		transfer system
+upright holding
+
+fuel
+	req trading (?)
+crew
+	input
+		find in outposts, hire at stations
+	output
+		?
+cargo
+choices at outposts
+quests
+	move cargo
+bounties/bountyhunters
+
+laser - deals radom damage
+missile - deals fixed damage
