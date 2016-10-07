@@ -85,6 +85,7 @@ function scan(){
 	//retaliation(); retaliation means nobody uses scan
 }
 function retaliation(){
+	setTimeout(function(){
 	var damage = Math.floor(enemy.l*Math.random());
 	shields -= damage;
 	if(damage == 0){
@@ -101,4 +102,5 @@ function retaliation(){
 		document.cookie = "shields=0;path=/";
 		document.cookie = "credits=0;path=/";
 	}
+	},1000);
 }

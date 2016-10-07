@@ -32,7 +32,7 @@ function updateShip(){
 	document.getElementById("laserviewer").innerHTML = "laser:&nbsp;" + laser;
 	document.getElementById("shieldsviewer").innerHTML = "shields:&nbsp;" + shields;
 	document.getElementById("missileviewer").innerHTML = "missiles:&nbsp;" + missiles;
-	document.getElementById("fuelviewer").innerHTML = "fuel:&nbsp;" + fuel;
+	// document.getElementById("fuelviewer").innerHTML = "fuel:&nbsp;" + fuel;
 	document.getElementById("creditviewer").innerHTML = "credits:&nbsp;" + credits;
 }
 
@@ -42,7 +42,7 @@ function saveCookie(){
 	document.cookie = 'laser=' + laser + "; path=/";
 	document.cookie = 'missiles=' + missiles + "; path=/";
 	document.cookie = 'credits=' + credits + "; path=/";
-	document.cookie = 'fuel=' + fuel + "; path=/";
+	// document.cookie = 'fuel=' + fuel + "; path=/";
 }
 
 name = getCookie("name");
@@ -50,7 +50,7 @@ shields = +getCookie("shields");
 laser = +getCookie("laser");
 missiles = +getCookie("missiles");
 credits = +getCookie("credits");
-fuel = +getCookie("fuel");
+// fuel = +getCookie("fuel");
 
 
 if(shields == 0){

@@ -1,28 +1,33 @@
 <html>
-	<head>
-		<title>start</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-	</head>
-	<body>
-		<div class="ship">
-		<div id="nameviewer">---</div>
-		<div id="laserviewer">---</div>
-		<div id="shieldsviewer">---</div>
-		<div id="missileviewer">---</div>
-		<div id="creditviewer">---</div>
-		</div>
-		<script type="text/javascript" src="base.js"></script>
-		<script>
-			name = prompt("What will you name your ship?").replace("/ /g","_");
-			shields = 10 + Math.round(Math.random()*5);
-			laser = 10 + Math.round(Math.random()*5);
-			missiles = 1 + Math.round(Math.random()*2);
-			credits = 500 + 10*Math.round(Math.random()*10);
-			
-			updateShip();
-			saveCookie();
-		</script>
-		And now the journey begins. May the force be with you.
+<head>
+<title>start</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div class="ship">
+	<div id="nameviewer">---</div>
+	<div id="laserviewer">---</div>
+	<div id="shieldsviewer">---</div>
+	<div id="missileviewer">---</div>
+	<div id="creditviewer">---</div>
+</div>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+var socket = io('http://localhost');
+console.log('loaded socket stuff');
+</script>
+<script src="base.js"></script>
+<script>
+name = prompt("What will you name your ship?").replace("/ /g","_");
+shields = 10 + Math.round(Math.random()*5);
+laser = 10 + Math.round(Math.random()*5);
+missiles = 1 + Math.round(Math.random()*2);
+credits = 500 + 10*Math.round(Math.random()*10);
 
-	</body>
+updateShip();
+saveCookie();
+</script>
+And now the journey begins. May the force be with you.
+
+</body>
 </html>

@@ -4,8 +4,11 @@ var io = require('socket.io')(app);
 users = {};
 
 io.on('connection', function(socket){
-	socket.on('enter', function(name)){
+	console.log('new connection');
+	socket.on('enter', function(name){
+		console.log(name + 'entered');
 		if(users.contains(name)){
+			console.log('name ' + name + ' taken');
 			socket.emit('name-taken');
 			return;
 		}
@@ -17,5 +20,5 @@ io.on('connection', function(socket){
 				socket.emit('transfer-failed');
 			}
 		});
-	}
+	});
 });

@@ -1,48 +1,53 @@
 <html>
-	<head>
-		<title>battle!</title>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-	</head>
-	<body>
-		<div class="ship">
-			<div id="nameviewer">---</div>
-			<div id="laserviewer">---</div>
-			<div id="shieldsviewer">---</div>
-			<div id="missileviewer">---</div>
-			<div id="creditviewer">---</div>
-			<div id=input>
-				<button onclick=fireLaser()>FIRE LASERS</button>
-				<button onclick=fireMissile()>FIRE MISSILE</button>
-				<button onclick=raiseShields()>REGENERATE SHIELDS</button>
-				<button onclick=scan()>SCAN</button>
-				<button onclick=retreat()>RETREAT</button>
-			</div>
-		</div>
-		<div class="outputWindow">
-			<p id="output"></p>
-		</div>
-		<script type="text/javascript" src="base.js"></script>
-		<script type="text/javascript" src="base_battle.js"></script>
-		<script>
-			var enemies = [
-				//starwars enemies
-				new foe("TIE-Fighter",6,10,1,200,"SHRIEEEEEEEEKKK!!!!!!!!!!!!!!"),
-				new foe("TIE-Interceptor",10,6,1,200,"You are trespassing in imperial space. Surrender immediately."),
-				new foe("TIE-Bomber",12,8,2,300,"Die rebel scum!"),
-				new foe("Imperial lambda-class shuttle",12,12,3,400,"On imperial order, shut of your engines and await arrest."),
-				new foe("Weequay pirates",8,11,1,300,"Jeqw asdbÿ, uqêvah saégh-sabbve!"),
-				//gen 1 enemies
-				new foe("lost cosmonauts",7,8,1,100,"SURRENDER TO CCCP YOU CAPITALIST SWINES!"),
-				new foe("space pirates",11,8,0,200,"YARR!! All ye credits shall be ours!"),
-				new foe("space sharks",7,9,0,0,"duuun-dun...duuuun-dun....dun-dun-dun-dun-dun-dun..."),
-				new foe("terrible anti-kessler drone",11,13,1,500,"On orders of the mid-orbital council, All orbiting debris must be terminated. If you are not a piece of debris, please file a declaration of necessity in a sealed envelope to your local space transportation office within the next two seconds. The mid-orbital council thanks you for your time and cooperation."),
-				new foe("Imperial scoutship",7,15,2,800,"The empire shall rule the universe. Glory to The Emperor!")
+<head>
+<title>battle!</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div class="ship">
+	<div id="nameviewer">---</div>
+	<div id="laserviewer">---</div>
+	<div id="shieldsviewer">---</div>
+	<div id="missileviewer">---</div>
+	<div id="creditviewer">---</div>
+	<div id=input>
+		<button onclick=fireLaser()>FIRE LASERS</button>
+		<button onclick=fireMissile()>FIRE MISSILE</button>
+		<button onclick=raiseShields()>REGENERATE SHIELDS</button>
+		<button onclick=scan()>SCAN</button>
+		<button onclick=retreat()>RETREAT</button>
+	</div>
+</div>
+<div class="outputWindow">
+	<p id="output"></p>
+</div>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+var socket = io('http://localhost');
+console.log('loaded socket stuff');
+</script>
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="base_battle.js"></script>
+<script>
+var enemies = [
+//starwars enemies
+new foe("TIE-Fighter",6,10,1,200,"SHRIEEEEEEEEKKK!!!!!!!!!!!!!!"),
+	new foe("TIE-Interceptor",10,6,1,200,"You are trespassing in imperial space. Surrender immediately."),
+	new foe("TIE-Bomber",12,8,2,300,"Die rebel scum!"),
+	new foe("Imperial lambda-class shuttle",12,12,3,400,"On imperial order, shut of your engines and await arrest."),
+	new foe("Weequay pirates",8,11,1,300,"Jeqw asdbÿ, uqêvah saégh-sabbve!"),
+	//gen 1 enemies
+	new foe("lost cosmonauts",7,8,1,100,"SURRENDER TO CCCP YOU CAPITALIST SWINES!"),
+	new foe("space pirates",11,8,0,200,"YARR!! All ye credits shall be ours!"),
+	new foe("space sharks",7,9,0,0,"duuun-dun...duuuun-dun....dun-dun-dun-dun-dun-dun..."),
+	new foe("terrible anti-kessler drone",11,13,1,500,"On orders of the mid-orbital council, All orbiting debris must be terminated. If you are not a piece of debris, please file a declaration of necessity in a sealed envelope to your local space transportation office within the next two seconds. The mid-orbital council thanks you for your time and cooperation."),
+	new foe("Imperial scoutship",7,15,2,800,"The empire shall rule the universe. Glory to The Emperor!")
 
-			];
-			generateEnemy(enemies);
-			output("You are ambushed by " + enemy.n + "!");
-			output("A message is recieved on the intercom: " + enemy.h);
-			output("COMBAT MODE : ENGAGED");
-		</script>
-	</body>
+	];
+	generateEnemy(enemies);
+	output("You are ambushed by " + enemy.n + "!");
+	output("A message is recieved on the intercom: " + enemy.h);
+	output("COMBAT MODE : ENGAGED");
+</script>
+</body>
 </html>
