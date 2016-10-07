@@ -1,5 +1,8 @@
 console.log("starting to load base");
 
+var socket = io('http://localhost:3000');
+console.log('loaded socket stuff');
+
 var name, shields, laser, missiles, credits, fuel;
 //var ship = {name:"", shields:0 ,laser:0 ,missiles:0, credits:0, fuel:0}
 
@@ -44,6 +47,26 @@ function saveCookie(){
 	document.cookie = 'credits=' + credits + "; path=/";
 	// document.cookie = 'fuel=' + fuel + "; path=/";
 }
+
+function trade(){
+	var f = document.forms["trade-form"];
+	console.log("res: " + f["trade-resource"].value);
+	console.log("amount: " + f["amount"].value);
+	console.log("recipient: " + f["recipient"].value);
+	if(this[f["trade-resource"].value]>=f["amount"].value)
+		socket.emit("trade",{target:f["recipient"].value, res:f["trade-resource"].value, amount:f["amount"]});
+	else output("you dont have enough of that.");
+}
+
+socket.on("trade-confirmed",function(data){
+	output("trade confirmed!");
+	this[data.res]-=data.amount;
+});
+socket.on("trade-failed",function(){output("trade failed!");});
+socket.on("transfer",function(data){
+	output("transfer recieved!");
+	this[data.res]+=data.amount;
+});
 
 name = getCookie("name");
 shields = +getCookie("shields");

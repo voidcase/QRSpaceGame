@@ -11,10 +11,19 @@ body{
 	width:23%;
 	margin-right:2%;
 }
-.outputWindow {
+.mainWindow {
 	float:right;
 	height:100%;
 	width:75%;
+}
+.outputWindow {
+	/* float:right; */
+	/* height:100%; */
+	/* width:75%; */
+}
+.tradeWindow {
+	background-color:#050729;
+	/* visibility:none; */
 }
 button{
 	width:100%;
@@ -24,3 +33,24 @@ button{
 	font-family:"consolas","courier new","monospace";
 	background-color: #a0a0ff;
 }
+/* .trade-form{ */
+/* 	background-color:#04061B; */
+/* 	display:none; */
+/* 	position:fixed; */
+/* 	margin: 15% auto; /1* 15% from the top and centered *1/ */
+/* 	padding: 20px; */
+/* 	border: 1px solid #888; */
+/* 	width: 80%; /1* Could be more or less, depending on screen size *1/ */
+/* } */
+/* .modal { */
+/* 	display: none; /1* Hidden by default *1/ */
+/* 	position: fixed; /1* Stay in place *1/ */
+/* 	z-index: 1; /1* Sit on top *1/ */
+/* 	left: 0; */
+/* 	top: 0; */
+/* 	width: 100%; /1* Full width *1/ */
+/* 	height: 100%; /1* Full height *1/ */
+/* 	overflow: auto; /1* Enable scroll if needed *1/ */
+/* 	background-color: rgb(0,0,0); /1* Fallback color *1/ */
+/* 	background-color: rgba(0,0,0,0.4); /1* Black w/ opacity *1/ */
+/* } */

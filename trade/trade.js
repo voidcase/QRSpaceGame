@@ -18,7 +18,7 @@ io.on('connection', function(socket){
 	socket.on('trade',function(data){
 		if(users.contains(data.target)){
 			users[data.target].emit('transfer',data);
-			socket.emit('transfer-confirmed');
+			socket.emit('transfer-confirmed',data);
 		} else {
 			socket.emit('transfer-failed');
 		}
