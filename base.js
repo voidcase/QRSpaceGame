@@ -1,6 +1,6 @@
 console.log("starting to load base");
 
-var socket = io('http://localhost:3000');
+var socket = io('http://192.168.1.4:3000');
 console.log('loaded socket stuff');
 
 var name, shields, laser, missiles, credits, fuel;
