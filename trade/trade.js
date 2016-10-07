@@ -5,20 +5,24 @@ users = {};
 
 io.on('connection', function(socket){
 	console.log('new connection');
-	socket.on('enter', function(name){
-		console.log(name + 'entered');
-		if(users.contains(name)){
+	socket.on('register', function(name){
+		console.log(name + ' registered');
+		if(users.hasOwnProperty(name)){
 			console.log('name ' + name + ' taken');
 			socket.emit('name-taken');
-			return;
+		} else {
+			users[name] = socket;
+			for (var u in users) console.log(u);
 		}
-		users[name] = socket;
-		on('trade',function(data){
-			if(users.contains(data.target)){
-				users[data.target].emit('transfer',data);
-			} else {
-				socket.emit('transfer-failed');
-			}
-		});
+	});
+	socket.on('trade',function(data){
+		if(users.contains(data.target)){
+			users[data.target].emit('transfer',data);
+			socket.emit('transfer-confirmed');
+		} else {
+			socket.emit('transfer-failed');
+		}
 	});
 });
+
+app.listen(3000);

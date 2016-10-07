@@ -20,3 +20,4 @@ bounties/bountyhunters
 
 laser - deals radom damage
 missile - deals fixed damage
+emp - damage enemy lasers
