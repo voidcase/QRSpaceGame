@@ -58,14 +58,18 @@ function trade(){
 	else output("you dont have enough of that.");
 }
 
-socket.on("trade-confirmed",function(data){
+socket.on("transfer-confirmed",function(data){
 	output("trade confirmed!");
 	this[data.res]-=data.amount;
+	updateShip();
+	saveCookie();
 });
-socket.on("trade-failed",function(){output("trade failed!");});
+socket.on("transfer-failed",function(){output("trade failed!");});
 socket.on("transfer",function(data){
 	output("transfer recieved!");
 	this[data.res]+=data.amount;
+	updateShip();
+	saveCookie();
 });
 
 name = getCookie("name");
