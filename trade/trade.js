@@ -16,7 +16,7 @@ io.on('connection', function(socket){
 		}
 	});
 	socket.on('trade',function(data){
-		if(users.contains(data.target)){
+		if(users.hasOwnProperty(data.target)){
 			users[data.target].emit('transfer',data);
 			socket.emit('transfer-confirmed',data);
 		} else {
