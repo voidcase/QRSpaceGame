@@ -1,6 +1,9 @@
 var maxShields = shields;
 var enemy;
 
+var laserAudio = new Audio("res/laser.mp3");
+var shieldsAudio = new Audio("res/powerup.mp3");
+
 function foe(n,l,s,m,c,h){
 	this.n = n; //name
 	this.s = s; //shields
@@ -39,6 +42,7 @@ function fireLaser(){
 	if(shields<=0) return;
 	var damage = Math.floor(laser*Math.random());
 	enemy.s -= damage;
+	laserAudio.play();
 	if(damage == 0){
 		output("your laser missed!");
 	}
@@ -68,6 +72,7 @@ function raiseShields(){
 	var diff = Math.floor(Math.random()*(maxShields-shields));
 	shields += diff;
 	output("shields regenerated " + diff + " points.");
+	shieldsAudio.play();
 	retaliation();
 }
 function retreat(){
