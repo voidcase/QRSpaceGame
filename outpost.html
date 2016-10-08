@@ -11,10 +11,30 @@
 			<div id="missileviewer">---</div>
 			<div id="creditviewer">---</div>
 		</div>
+<div class="mainWindow">
+	<div class="outputWindow">
 		<p id="output"></p>
+	</div>
+	<div class="tradeWindow">
+		<form id="trade-form" accept-charset="utf-8" onsubmit="trade();return false;">
+			send:
+			<input type="number" name="amount" placeholder="amount"/>
+			<select name="trade-resource">
+				<option value="laser">laser</option>
+				<option value="shields">shields</option>
+				<option value="missiles">missiles</option>
+				<option value="credits">credits</option>
+			</select>
+			to
+			<input type="text" name="recipient" placeholder="recipient" />
+			<input type="submit" name="send" value="trade" />
+		</form>
+	</div>
+</div>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 		<script src="base.js"></script>
 		<script>
-			var plot = Math.floor(Math.random()*3);
+			var plot = Math.floor(Math.random()*2);
 			switch(plot){
 				case 0:
 					output("You dock at an outpost.");
@@ -25,10 +45,10 @@
 					output("You intersect an unexpected meteor shower. Your laser cannons are damaged.");
 					laser -= 2;
 				break;
-				case 2:
-					output("You land at a tavern where you get very drunk, the next day you wake up to find that you renamed your ship.");
-					name = ["s.s. dickbutt","ship_shaped_cat","The_Dogemobile", "cheese","millenium_pidgeon", "jan_senap","windrammer","spaghetti","kaviartaxi"][Math.floor(Math.random()*9)];
-				break;
+//				case 2:
+//					output("You land at a tavern where you get very drunk, the next day you wake up to find that you renamed your ship.");
+//					name = ["s.s. dickbutt","ship_shaped_cat","The_Dogemobile", "cheese","millenium_pidgeon", "jan_senap","windrammer","spaghetti","kaviartaxi"][Math.floor(Math.random()*9)];
+//				break;
 			}
 			updateShip();
 			saveCookie();
