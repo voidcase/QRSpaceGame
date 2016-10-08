@@ -60,14 +60,14 @@ function trade(){
 
 socket.on("transfer-confirmed",function(data){
 	output("trade confirmed!");
-	me[data.res]-=data.amount;
+	me[data.res]-=parseInt(data.amount);
 	updateShip();
 	saveCookie();
 });
 socket.on("transfer-failed",function(){output("trade failed!");});
 socket.on("transfer",function(data){
 	output("transfer recieved!");
-	me[data.res]+=data.amount;
+	me[data.res]+=parseInt(data.amount);
 	updateShip();
 	saveCookie();
 });
