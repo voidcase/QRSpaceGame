@@ -72,7 +72,7 @@ socket.on("transfer-confirmed",function(data){
 socket.on("transfer-failed",function(){output("transfer failed!");});
 
 socket.on("transfer",function(data){
-	output("A transfer of " data.amount + " " + data.res + " was recieved from " + data.sender + ".");
+	output("A transfer of " + data.amount + " " + data.res + " was recieved from " + data.sender + ".");
 	me[data.res]+=parseInt(data.amount);
 	updateShip();
 	saveCookie();
