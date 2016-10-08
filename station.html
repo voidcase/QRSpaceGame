@@ -17,7 +17,27 @@
 				<button onclick="missilesUp()">Buy missile (250c)</button>
 			</div>
 		</div>
+<div class="mainWindow">
+	<div class="outputWindow">
 		<p id="output"></p>
+	</div>
+	<div class="tradeWindow">
+		<form id="trade-form" accept-charset="utf-8" onsubmit="trade();return false;">
+			send:
+			<input type="number" name="amount" placeholder="amount"/>
+			<select name="trade-resource">
+				<option value="laser">laser</option>
+				<option value="shields">shields</option>
+				<option value="missiles">missiles</option>
+				<option value="credits">credits</option>
+			</select>
+			to
+			<input type="text" name="recipient" placeholder="recipient" />
+			<input type="submit" name="send" value="trade" />
+		</form>
+	</div>
+</div>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 		<script type="text/javascript" src="base.js"></script>
 		<script>
 			output("You dock at a trading station. Here you can spend credits to repair or upgrade your ship if you want to.");
