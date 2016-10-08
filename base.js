@@ -54,7 +54,7 @@ function trade(){
 	console.log("amount: " + f["amount"].value);
 	console.log("recipient: " + f["recipient"].value);
 	if(this[f["trade-resource"].value]>=f["amount"].value)
-		socket.emit("trade",{target:f["recipient"].value, res:f["trade-resource"].value, amount:f["amount"]});
+		socket.emit("trade",{target:f["recipient"].value, res:f["trade-resource"].value, amount:f["amount"].value});
 	else output("you dont have enough of that.");
 }
 

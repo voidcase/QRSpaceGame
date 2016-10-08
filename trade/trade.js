@@ -16,6 +16,7 @@ io.on('connection', function(socket){
 		}
 	});
 	socket.on('trade',function(data){
+		console.log('data: ' + JSON.stringify(data,null,2));
 		if(users.hasOwnProperty(data.target)){
 			users[data.target].emit('transfer',data);
 			socket.emit('transfer-confirmed',data);
