@@ -1,0 +1,8 @@
+One shipname was undefined, check if this is index letting an empty string through.
+Almost nobody traded, could be because they didn't understand how or they didnt feel they needed.
+Don't put nodes on the floor, they will get ruined.
+add hooks for collecting test data
+people want to hold their phones vertically.
+they need to know what the different combat moves do.
+	"what's the difference between missiles and lasers?"
+it get's very crowded if everyone starts in the same place
