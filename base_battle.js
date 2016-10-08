@@ -2,7 +2,9 @@ var maxShields = shields;
 var enemy;
 
 var laserAudio = new Audio("res/laser.mp3");
+var missileAudio = new Audio("res/missile.mp3");
 var shieldsAudio = new Audio("res/powerup.mp3");
+var scannerAudio = new Audio("res/scanner.wav");
 
 function foe(n,l,s,m,c,h){
 	this.n = n; //name
@@ -54,6 +56,7 @@ function fireLaser(){
 
 function fireMissile(){
 	if(missiles >= 1){
+		missileAudio.play();
 		missiles -= 1;
 		enemy.s -= 5;
 		output("Your missile did 5 damage to the " + enemy.n);
@@ -91,6 +94,7 @@ function scan(){
 	output("SHIELDS  : " + enemy.s);
 	output("MISSILES : " + enemy.m);
 	output("----END SCAN REPORT----")
+	scannerAudio.play();
 	//retaliation(); retaliation means nobody uses scan
 }
 function retaliation(){
