@@ -22,6 +22,7 @@ function output(text){
 	var br = document.createElement("br");
 	document.getElementById("output").appendChild(child);
 	document.getElementById("output").appendChild(br);
+	window.scrollTo(0,document.body.scrollHeight);
 }
 
 function getCookie(key) {
