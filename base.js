@@ -2,7 +2,7 @@ console.log("starting to load base");
 
 var socket = io('http://192.168.1.2:3000');
 console.log('loaded socket stuff');
-
+var me = this;
 var name, shields, laser, missiles, credits, fuel;
 //var ship = {name:"", shields:0 ,laser:0 ,missiles:0, credits:0, fuel:0}
 
@@ -60,14 +60,14 @@ function trade(){
 
 socket.on("transfer-confirmed",function(data){
 	output("trade confirmed!");
-	this[data.res]-=data.amount;
+	me[data.res]-=data.amount;
 	updateShip();
 	saveCookie();
 });
 socket.on("transfer-failed",function(){output("trade failed!");});
 socket.on("transfer",function(data){
 	output("transfer recieved!");
-	this[data.res]+=data.amount;
+	me[data.res]+=data.amount;
 	updateShip();
 	saveCookie();
 });
