@@ -54,19 +54,25 @@ function trade(){
 	console.log("amount: " + f["amount"].value);
 	console.log("recipient: " + f["recipient"].value);
 	if(this[f["trade-resource"].value]>=f["amount"].value)
-		socket.emit("trade",{target:f["recipient"].value.toLowerCase(), res:f["trade-resource"].value, amount:f["amount"].value});
+		socket.emit("trade",{
+			target:f["recipient"].value.toLowerCase(),
+			sender:name,
+			res:f["trade-resource"].value,
+			amount:f["amount"].value
+		});
 	else output("you dont have enough of that.");
 }
 
 socket.on("transfer-confirmed",function(data){
-	output("trade confirmed!");
+	output("transfer confirmed!");
 	me[data.res]-=parseInt(data.amount);
 	updateShip();
 	saveCookie();
 });
-socket.on("transfer-failed",function(){output("trade failed!");});
+socket.on("transfer-failed",function(){output("transfer failed!");});
+
 socket.on("transfer",function(data){
-	output("transfer recieved!");
+	output("A transfer of " data.amount + " " + data.res + " was recieved from " + data.sender + ".");
 	me[data.res]+=parseInt(data.amount);
 	updateShip();
 	saveCookie();
@@ -84,9 +90,6 @@ if(shields == 0){
 	window.location.replace("death.html");
 }
 
-if(fuel == 0){
-
-}
 if (name != ""){
 	socket.emit('register',name);
 }
