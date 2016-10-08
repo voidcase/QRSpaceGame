@@ -7,13 +7,8 @@ io.on('connection', function(socket){
 	console.log('new connection');
 	socket.on('register', function(name){
 		console.log(name + ' registered');
-		if(users.hasOwnProperty(name)){
-			console.log('name ' + name + ' taken');
-			socket.emit('name-taken');
-		} else {
-			users[name] = socket;
-			for (var u in users) console.log(u);
-		}
+		users[name] = socket;
+		for (var u in users) console.log(u);
 	});
 	socket.on('trade',function(data){
 		console.log('data: ' + JSON.stringify(data,null,2));

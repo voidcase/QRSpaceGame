@@ -87,7 +87,9 @@ if(shields == 0){
 if(fuel == 0){
 
 }
-
+if (name != ""){
+	socket.emit('register',name);
+}
 updateShip();
 
 console.log("finished loading base");
