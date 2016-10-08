@@ -10,6 +10,7 @@ body{
 	height:100%;
 	width:23%;
 	margin-right:2%;
+	position:fixed;
 }
 .mainWindow {
 	float:right;
