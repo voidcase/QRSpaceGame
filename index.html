@@ -10,8 +10,6 @@
 	<div id="shieldsviewer">-</div>
 	<div id="missileviewer">-</div>
 	<div id="creditviewer">-</div>
-	<button id="show-trade" onclick="outputTradeForm()">trade resources</button>
-	<!-- <div w3-include-html="common/sidebar.html"></div> -->
 </div>
 <div class="mainWindow">
 	<div class="outputWindow">
@@ -33,13 +31,6 @@
 	</div>
 </div>
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="http://www.w3schools.com/lib/w3data.js"></script>
-<script>
-w3IncludeHTML();
-var socket = io('http://localhost:3000');
-console.log('loaded socket stuff');
-</script>
 <script src="base.js"></script>
 <script>
 name = prompt("What will you name your ship?").replace("/ /g","_");
