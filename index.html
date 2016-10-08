@@ -43,7 +43,7 @@
 name = prompt("What will you name your ship?").replace("/ /g","_");
 socket.emit('register',name);
 socket.on('name-taken',function(){
-			name = prompt("That name is taken, pick another one.").replace("/ /g","_");
+			name = prompt("That name is taken, pick another one.").replace("/ /g","_").toLowerCase();
 			socket.emit('register',name);
 		});
 shields = 10 + Math.round(Math.random()*5);
