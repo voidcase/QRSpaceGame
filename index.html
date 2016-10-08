@@ -17,20 +17,27 @@
 	</div>
 	<div class="tradeWindow">
 		<form id="trade-form" accept-charset="utf-8" onsubmit="trade();return false;">
-			trade:
+			send:
+			<input type="number" name="amount" placeholder="amount"/>
 			<select name="trade-resource">
 				<option value="laser">laser</option>
 				<option value="shields">shields</option>
 				<option value="missiles">missiles</option>
 				<option value="credits">credits</option>
 			</select>
-			<input type="number" name="amount" placeholder="amount"/>
+			to
 			<input type="text" name="recipient" placeholder="recipient" />
 			<input type="submit" name="send" value="trade" />
 		</form>
 	</div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<!-- <script src="192.168.1.2:3000/trade/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script> -->
+<!-- <script> -->
+<!-- var socket = io('http://192.168.1.2:3000'); -->
+<!-- console.log('loaded socket stuff'); -->
+<!-- </script> -->
 <script src="base.js"></script>
 <script>
 name = prompt("What will you name your ship?").replace("/ /g","_");
@@ -46,7 +53,7 @@ credits = 500 + 10*Math.round(Math.random()*10);
 
 updateShip();
 saveCookie();
-output('And now begins your journey out beyond the skies, what perils and delights might wait and take you by surprise?');
+output('And now begins your journey out beyond the skies, what perils and delights might lie in wait and take you by surprise?');
 </script>
 
 </body>
