@@ -4,6 +4,7 @@ var socket = io('http://192.168.1.2:3000');
 console.log('loaded socket stuff');
 var me = this;
 var name, shields, laser, missiles, credits, fuel;
+var items = new Set();
 //var ship = {name:"", shields:0 ,laser:0 ,missiles:0, credits:0, fuel:0}
 
 function getQueryParams() {
@@ -33,12 +34,20 @@ function getCookie(key) {
 }
 
 function updateShip(){
-	document.getElementById("nameviewer").innerHTML = "<b>" + name + "</b>";
-	document.getElementById("laserviewer").innerHTML = "laser:&nbsp;" + laser;
-	document.getElementById("shieldsviewer").innerHTML = "shields:&nbsp;" + shields;
-	document.getElementById("missileviewer").innerHTML = "missiles:&nbsp;" + missiles;
-	// document.getElementById("fuelviewer").innerHTML = "fuel:&nbsp;" + fuel;
-	document.getElementById("creditviewer").innerHTML = "credits:&nbsp;" + credits;
+
+	$("#nameviewer").html($("<b></b>").text(name));
+	$("#laserviewer").text("laser: " + laser);
+	$("#shieldsviewer").text("shields: " + shields);
+	$("#missileviewer").text("missiles: " + missiles);
+	// $("#fuelviewer").text("fuel: " + fuel);
+	$("#creditviewer").text("credits: " + credits);
+	if (items.size > 0) {
+		$("#itemviewer").empty();
+		$("#itemviewer").append(
+			"items:",
+			$("<ul></ul>").append(Array.from(items).map(x => $('<li></li>').text(x)))
+		);
+	}
 }
 
 function saveCookie(){
@@ -88,7 +97,7 @@ credits = +getCookie("credits");
 // fuel = +getCookie("fuel");
 
 
-if(shields == 0){
+if(shields == 0 && document.location.pathname !== "/index.html"){
 	window.location.replace("death.html");
 }
 

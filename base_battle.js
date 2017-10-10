@@ -97,7 +97,11 @@ function fireMissile(){
 }
 
 function raiseShields(){
-	var diff = Math.floor(Math.random()*(maxShields-shields));
+	if (shields === maxShields) {
+		output("shields already at maximum");
+		return;
+	}
+	var diff = 2 + Math.floor(Math.random()*(maxShields-shields));
 	shields += diff;
 	output("shields regenerated " + diff + " points.");
 	shieldsAudio.play();

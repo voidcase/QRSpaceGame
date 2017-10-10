@@ -11,6 +11,7 @@
 		<div id="shieldsviewer">hhhhh</div>
 		<div id="missileviewer">vvvvvvvvvvv</div>
 		<div id="creditviewer">fdsafgs</div>
+		<div id="itemviewer"></div>
 			<div id="input">
 				<button onclick="laserUp()">Upgrade laser (300c)</button>
 				<button	onclick="shieldsUp()">Upgrade shields (200c)</button>
@@ -37,6 +38,10 @@
 		</form>
 	</div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 		<script type="text/javascript" src="base.js"></script>
 		<script>
@@ -69,7 +74,7 @@
 				}
 			}
 			function missilesUp(){
-				var price = 250;
+				var price = 50;
 				if(credits>=price){
 					credits -= price;
 					missiles++;
