@@ -6,6 +6,28 @@ var missileAudio = new Audio("res/missile.mp3");
 var shieldsAudio = new Audio("res/powerup.mp3");
 var scannerAudio = new Audio("res/scanner.wav");
 
+enemySets = [
+	[ //easy
+		//starwars enemies
+		new foe("TIE-Fighter",6,10,1,200,"SHRIEEEEEEEEKKK!!!!!!!!!!!!!!"),
+		new foe("TIE-Interceptor",10,6,1,200,"You are trespassing in imperial space. Surrender immediately."),
+		new foe("TIE-Bomber",12,8,2,300,"Die rebel scum!"),
+		new foe("Imperial lambda-class shuttle",12,12,3,400,"On imperial order, shut of your engines and await arrest."),
+		new foe("Weequay pirates",8,11,1,300,"Jeqw asdbÿ, uqêvah saégh-sabbve!"),
+		//gen 1 enemies
+		new foe("lost cosmonauts",7,8,1,100,"SURRENDER TO CCCP YOU CAPITALIST SWINES!"),
+		new foe("space pirates",11,8,0,200,"YARR!! All ye credits shall be ours!"),
+		new foe("space sharks",7,9,0,0,"duuun-dun...duuuun-dun....dun-dun-dun-dun-dun-dun..."),
+		new foe("terrible anti-kessler drone",11,13,1,500,"On orders of the mid-orbital council, All orbiting debris must be terminated. If you are not a piece of debris, please file a declaration of necessity in a sealed envelope to your local space transportation office within the next two seconds. The mid-orbital council thanks you for your time and cooperation."),
+		new foe("Imperial scoutship",7,15,2,800,"The empire shall rule the universe. Glory to The Emperor!")
+	],
+	[
+		new foe("Victory Class Star Destroyer",20,15,3,1000,"You will know the power of the dark side"),
+		new foe("Imperial Class Star Destroyer",15,20,3,1000,"You are sentenced to immediate execution for crime against the empire."),
+		new foe("Dreadnaught Class Heavy Cruiser",15,15,4,600,"The resistance will be crushed!")
+	]
+]
+
 function foe(n,l,s,m,c,h){
 	this.n = n; //name
 	this.s = s; //shields
@@ -15,7 +37,10 @@ function foe(n,l,s,m,c,h){
 	this.h = h; //greeting
 }
 
-function generateEnemy(enemies){
+function generateEnemy(){
+	var setid = getQueryParams().set;
+	if (setid === undefined) setid = 0;
+	const enemies = enemySets[setid];
 	enemy = enemies[Math.floor(Math.random()*(enemies.length))];
 }
 

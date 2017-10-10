@@ -6,8 +6,9 @@ var me = this;
 var name, shields, laser, missiles, credits, fuel;
 //var ship = {name:"", shields:0 ,laser:0 ,missiles:0, credits:0, fuel:0}
 
-function getQueryParams(qs) {
-    qs = qs.split('+').join(' ');
+function getQueryParams() {
+	var qs = document.location.href;
+    qs = qs.split('?')[1].split('+').join(' ');
     var params = {},
         tokens,
         re = /[?&]?([^=]+)=([^&]*)/g;
