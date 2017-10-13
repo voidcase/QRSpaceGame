@@ -57,7 +57,8 @@ function generateEnemy(){
 		["chocolate dipped", "sprinkled"],
 		["amateur", "sellout"],
 		["starled", "sudden"],
-		["snobby", "plebian"]
+		["snobby", "plebian"],
+		["flowerphobic", "flowery"]
 	];
 	const subjectives = [
 		["clowns","pug jugglers"],
