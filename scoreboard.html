@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>scoreboard</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	<style>
+		#formula {
+			font-size:20vw;
+			margin:auto;
+			text-align:center;
+		}
+		.unfound{
+			color:#070931;
+		}
+	</style>
+	</head>
+
+	<body>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<div id="formula"></div>
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.min.js"
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+		<script>
+
+// Initialize Firebase
+var config = {
+	apiKey: "AIzaSyCr2oI-357S9sFqlYE0vL8ZlzcoAqvdA0I",
+	authDomain: "qrspacegame4.firebaseapp.com",
+	databaseURL: "https://qrspacegame4.firebaseio.com",
+	projectId: "qrspacegame4",
+	storageBucket: "qrspacegame4.appspot.com",
+	messagingSenderId: "408991214216"
+};
+firebase.initializeApp(config);
+
+const artMap = {
+	elk: "e",
+	oak: "=",
+	moose: "m",
+	carrot: "c",
+	hip2b: "²"
+};
+
+firebase.database().ref('/artifacts').on('value', (snap) => {
+	const gathered = Object.keys(snap.val()).map(x => artMap[x]);
+	var formulaDiv = $('#formula');
+	formulaDiv.empty();
+	Object.keys(artMap).forEach(x => {
+		var spn = $('<span></span>')
+			.text(artMap[x])
+			.addClass( (x in snap.val()) ? 'found' : 'unfound');
+		formulaDiv.append(spn);
+	});
+});
+
+
+		</script>
+	<body>
+</html>
