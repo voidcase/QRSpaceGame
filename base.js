@@ -1,7 +1,3 @@
-console.log("starting to load base");
-
-var socket = io('http://192.168.1.2:3000');
-console.log('loaded socket stuff');
 var me = this;
 var name, shields, laser, missiles, credits, fuel;
 var items = new Set();
@@ -68,45 +64,15 @@ function saveCookie(){
 	// document.cookie = 'fuel=' + fuel + "; path=/";
 }
 
-function trade(){
-	var f = document.forms["trade-form"];
-	console.log("res: " + f["trade-resource"].value);
-	console.log("amount: " + f["amount"].value);
-	console.log("recipient: " + f["recipient"].value);
-	if(this[f["trade-resource"].value]>=f["amount"].value)
-		socket.emit("trade",{
-			target:f["recipient"].value.toLowerCase(),
-			sender:name,
-			res:f["trade-resource"].value,
-			amount:f["amount"].value
-		});
-	else output("you dont have enough of that.");
-}
-
-socket.on("transfer-confirmed",function(data){
-	output("transfer confirmed!");
-	me[data.res]-=parseInt(data.amount);
-	updateShip();
-	saveCookie();
-});
-socket.on("transfer-failed",function(){output("transfer failed!");});
-
-socket.on("transfer",function(data){
-	output("A transfer of " + data.amount + " " + data.res + " was recieved from " + data.sender + ".");
-	me[data.res]+=parseInt(data.amount);
-	updateShip();
-	saveCookie();
-});
-
 name = getCookie("name");
 shields = +getCookie("shields");
 laser = +getCookie("laser");
 missiles = +getCookie("missiles");
 credits = +getCookie("credits");
 // itemstring = getCookie("items");
-if (itemstring) {
-	itemstring.split('|').forEach(x => items.add(x));
-}
+// if (itemstring) {
+// 	itemstring.split('|').forEach(x => items.add(x));
+// }
 // fuel = +getCookie("fuel");
 
 
@@ -114,9 +80,6 @@ if(shields == 0 && document.location.pathname !== "/index.html"){
 	window.location.replace("death.html");
 }
 
-if (name != ""){
-	socket.emit('register',name);
-}
 updateShip();
 
 console.log("finished loading base");

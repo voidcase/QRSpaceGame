@@ -186,14 +186,3 @@ function retaliation(){
 	}
 	},1000);
 }
-
-socket.on('transfer',function(data){
-	if (data.res == "shields"){
-		maxShields += parseInt(data.amount);
-	}
-});
-socket.on('transfer-confirmed',function(data){
-	if (data.res == "shields"){
-		maxShields -= parseInt(data.amount);
-	}
-});
