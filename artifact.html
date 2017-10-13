@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>Yay</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+	</head>
+	<body>
+		<div class="ship">
+			<div id="nameviewer">---</div>
+			<div id="laserviewer">---</div>
+			<div id="shieldsviewer">---</div>
+			<div id="missileviewer">---</div>
+			<div id="creditviewer">---</div>
+			<div id="itemviewer"></div>
+		</div>
+<div class="mainWindow">
+	<div class="outputWindow">
+		<p id="output"></p>
+	</div>
+	<div class="tradeWindow">
+		<form id="trade-form" accept-charset="utf-8" onsubmit="trade(); return false;">
+			send:
+			<input type="number" name="amount" placeholder="amount"/>
+			<select name="trade-resource">
+				<option value="laser">laser</option>
+				<option value="shields">shields</option>
+				<option value="missiles">missiles</option>
+				<option value="credits">credits</option>
+			</select>
+			to
+			<input type="text" name="recipient" placeholder="recipient" />
+			<input type="submit" name="send" value="trade" />
+		</form>
+	</div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script src="base.js"></script>
+		<script>
+			const artifactId = getQueryParams().artid;
+			const artMap = {
+				elk: "e",
+				oak: "=",
+				moose: "m",
+				carrot: "c",
+				hip2b: "²"
+			};
+			const art = artMap[artid];
+			items.add(art);
+			updateShip();
+			saveCookie();
+			output("You have found the legendary '" + art + "'! Return it to earth without dying!");
+			output("You can now hyperdrive to the next location.");
+		</script>
+	
+	</body>
+</html>

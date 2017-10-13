@@ -38,10 +38,49 @@ function foe(n,l,s,m,c,h){
 }
 
 function generateEnemy(){
-	var setid = getQueryParams().set;
-	if (setid === undefined) setid = 0;
-	const enemies = enemySets[setid];
-	enemy = enemies[Math.floor(Math.random()*(enemies.length))];
+	const commands = ["Die", "Bugger off", "Begone", "Pepare to beet your baker", "Beat it", "Lets get down to clown", "Do your second worst", "Shit a brick and call it Mick", "What are you doing in my swamp"];
+	const adjectives = [
+		["angry", "fucking"],
+		["insecure", "fake"],
+		["rebellious", "spineless"],
+		["constipated", "diarrhetic"],
+		["very drunk", "beautiful"],
+		["pretentious", "pedestrian"],
+		["disgruntled", "gruntled"],
+		["gruntled", "disgruntled"],
+		["buerocratic", "rejected"],
+		["pickled", "dried"],
+		["fat", "skinny"],
+		["ironic", "\"clever\""],
+		["carnivorous", "tasty"],
+		["confused", "unexplained"],
+		["chocolate dipped", "sprinkled"],
+		["amateur", "sellout"],
+		["starled", "sudden"],
+		["snobby", "plebian"]
+	];
+	const subjectives = [
+		["clowns","pug jugglers"],
+		["weathermen","shitstorm"],
+		["phone salesmen","customers"],
+		["hamsters","guineapigs"],
+		["sentient toasters","kettles"],
+		["motherfuckers","buggertruckers"],
+		["gingerbread men","marzipan pigs"],
+		["ducks","geese"],
+	];
+	const adj = pickRandom(adjectives);
+	const subj = pickRandom(subjectives);
+	const enemyName = adj[0] + " " + subj[0];
+	const enemyHailing = pickRandom(commands) + ", you " + adj[1] + " " + subj[1] + "!";
+	
+	var zone = getQueryParams().zone;
+	if (zone === undefined) zone = 1;
+	const l = rand(zone*10 - 5, zone*10);
+	const s = rand(zone*10 - 5, zone*10);
+	const m = rand(0, zone);
+	const c = rand(zone*100 - 50, zone*100);
+	enemy = new foe(enemyName, l, s, m, c, enemyHailing);
 }
 
 function checkVictory(){

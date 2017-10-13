@@ -52,10 +52,10 @@ socket.on('name-taken',function(){
 			name = prompt("That name is taken, pick another one.").replace("/ /g","_").toLowerCase();
 			socket.emit('register',name);
 		});
-shields = 10 + Math.round(Math.random()*5);
-laser = 10 + Math.round(Math.random()*5);
-missiles = 1 + Math.round(Math.random()*2);
-credits = 500 + 10*Math.round(Math.random()*10);
+shields = rand(5,10);
+laser = rand(5,10);
+missiles = rand(1,3);
+credits = 100;
 
 updateShip();
 saveCookie();

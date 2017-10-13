@@ -19,6 +19,14 @@ function getQueryParams() {
     return params;
 }
 
+function rand(lower, upper) {
+	return Math.floor((Math.random() * (upper-lower)) + lower);
+}
+
+function pickRandom(arr) {
+	return arr[Math.floor(Math.random()*arr.length)];
+}
+
 function output(text){
 	var child = document.createTextNode(text);
 	var br = document.createElement("br");
