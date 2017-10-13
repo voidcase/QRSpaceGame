@@ -4,10 +4,12 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="style.css" />
 	<style>
-		#formula {
-			font-size:20vw;
+		#formula, #finders{
 			margin:auto;
 			text-align:center;
+		}
+		#formula {
+			font-size:20vw;
 		}
 		.unfound{
 			color:#070931;
@@ -23,6 +25,7 @@
 		<br />
 		<br />
 		<div id="formula"></div>
+		<ul id="finders"></ul>
 		<script
 			src="https://code.jquery.com/jquery-3.2.1.min.js"
 			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -50,14 +53,19 @@ const artMap = {
 };
 
 firebase.database().ref('/artifacts').on('value', (snap) => {
-	const gathered = Object.keys(snap.val()).map(x => artMap[x]);
 	var formulaDiv = $('#formula');
+	const snapval = snap.val() || {};
 	formulaDiv.empty();
 	Object.keys(artMap).forEach(x => {
 		var spn = $('<span></span>')
 			.text(artMap[x])
-			.addClass( (x in snap.val()) ? 'found' : 'unfound');
+			.addClass( (x in snapval) ? 'found' : 'unfound');
 		formulaDiv.append(spn);
+	});
+	var finders = $('#finders');
+	finders.empty();
+	$.each(snapval, (x,y) => {
+		finders.append($('<li></li>').text("'" + artMap[x] + "' found by the crew of the starship " + y.finder));
 	});
 });
 
