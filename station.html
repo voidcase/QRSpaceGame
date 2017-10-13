@@ -14,9 +14,9 @@
 		<div id="creditviewer">fdsafgs</div>
 		<div id="itemviewer"></div>
 			<div id="input">
-				<button onclick="laserUp()">Upgrade laser (300c)</button>
-				<button	onclick="shieldsUp()">Upgrade shields (200c)</button>
-				<button onclick="missilesUp()">Buy missile (50c)</button>
+				<button id="laserup" onclick="laserUp()"></button>
+				<button	id="shieldsup" onclick="shieldsUp()"></button>
+				<button id="missilesup" onclick="missilesUp()"></button>
 			</div>
 		</div>
 <div class="mainWindow">
@@ -30,10 +30,16 @@
   crossorigin="anonymous"></script>
 		<script type="text/javascript" src="base.js"></script>
 		<script>
+			laserprice = 300;
+			shieldsprice = 200;
+			missileprice = 50;
+			$("#laserup").text("Upgrade laser (" + laserprice + "c)");
+			$("#shieldsup").text("Upgrade shields (" + shieldsprice + "c)");
+			$("#missilesup").text("Buy missiles (" + missileprice + "c)");
 			output("You dock at a trading station. Here you can spend credits to repair or upgrade your ship if you want to.");
 			
 			function laserUp(){
-				var price = 300;
+				var price = laserprice;
 				if(credits>=price){
 					credits -= price;
 					laser++;
@@ -46,7 +52,7 @@
 				}
 			}
 			function shieldsUp(){
-				var price = 200;
+				var price = shieldsprice;
 				if(credits>=price){
 					credits -= price;
 					shields++;
@@ -59,7 +65,7 @@
 				}
 			}
 			function missilesUp(){
-				var price = 50;
+				var price = missileprice;
 				if(credits>=price){
 					credits -= price;
 					missiles++;
